@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.ProductEntity;
+import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
 
 @Service
@@ -15,12 +15,12 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public ProductEntity addProduct(ProductEntity product) {
+    public Product addProduct(Product product) {
         return productRepository.save(product);
     }
 
     @Override
-    public List<ProductEntity> getAllProducts() {
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 }
