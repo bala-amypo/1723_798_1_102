@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,9 +53,9 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
-    public Product() {
+    public ProductEntity() {
     }
-    public Product(Long id, String name, String brand, String modelNumber, String category) {
+    public ProductEntity(Long id, String name, String brand, String modelNumber, String category) {
         this.id = id;
         this.name = name;
         this.brand = brand;
