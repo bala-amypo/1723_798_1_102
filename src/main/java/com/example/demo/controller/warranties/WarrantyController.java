@@ -1,7 +1,6 @@
 package com.example.demo.controller.warranties;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,13 +34,13 @@ public class WarrantyController {
 
     // GET /warranties/{warrantyId}
     @GetMapping("/{warrantyId}")
-    public Optional<Warranty> getWarranty(@PathVariable Long warrantyId) {
-        return warrantyService.getWarrantyById(warrantyId);
+    public Warranty getWarranty(@PathVariable Long warrantyId) {
+        return warrantyService.getWarranty(warrantyId);
     }
 
     // GET /warranties/user/{userId}
     @GetMapping("/user/{userId}")
     public List<Warranty> getUserWarranties(@PathVariable Long userId) {
-        return warrantyService.getWarrantiesByUserId(userId);
+        return warrantyService.getUserWarranties(userId);
     }
 }
