@@ -18,7 +18,7 @@ public class Product {
 
     // Constructors
     public Product() {
-    }
+    }  
 
     public Product(String name, String modelNumber, String category) {
         this.name = name;
