@@ -1,13 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.repository;
 
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.example.demo.entity.AlertSchedule;
 
-public interface AlertScheduleService {
-
-    AlertSchedule createSchedule(Long warrantyId, AlertSchedule schedule);
-
-    List<AlertSchedule> getSchedules(Long warrantyId);
-
-    AlertSchedule toggleSchedule(Long alertId);
+public interface AlertScheduleRepository extends JpaRepository<AlertSchedule, Long> {
+    List<AlertSchedule> findByWarrantyId(Long warrantyId);
 }
