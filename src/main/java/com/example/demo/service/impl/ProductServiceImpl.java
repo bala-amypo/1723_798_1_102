@@ -20,10 +20,10 @@ public class ProductServiceImpl implements ProductService {
     public Product addProduct(Product product) {
         // Validate required fields
         if (product.getModelNumber() == null || product.getModelNumber().isBlank()) {
-            throw new IllegalArgumentException("Model number required");
+            throw new RuntimeException("Model number required");
         }
         if (product.getCategory() == null || product.getCategory().isBlank()) {
-            throw new IllegalArgumentException("Category required");
+            throw new RuntimeException("Category required");
         }
         
         return productRepository.save(product);

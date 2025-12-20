@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import com.example.demo.entity.Warranty;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.WarrantyRepository;
@@ -37,10 +36,10 @@ public class WarrantyServiceImpl implements WarrantyService {
 
         // Fetch user and product
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+                .orElseThrow(() -> new RuntimeException("Product not found"));
 
         // Business rule: expiry date must be after purchase date
         if (warranty.getExpiryDate().isBefore(warranty.getPurchaseDate())) {
@@ -58,7 +57,7 @@ public class WarrantyServiceImpl implements WarrantyService {
     @Override
     public Warranty getWarranty(Long warrantyId) {
         return warrantyRepository.findById(warrantyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Warranty not found"));
+                .orElseThrow(() -> new RuntimeException("Warranty not found"));
     }
 
     @Override

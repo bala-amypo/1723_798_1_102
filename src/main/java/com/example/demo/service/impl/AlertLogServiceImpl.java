@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.AlertLog;
 import com.example.demo.entity.Warranty;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.AlertLogRepository;
 import com.example.demo.repository.WarrantyRepository;
 
@@ -26,7 +25,7 @@ public class AlertLogServiceImpl implements AlertLogService {
     public AlertLog addLog(Long warrantyId, String message) {
 
         Warranty warranty = warrantyRepository.findById(warrantyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Warranty not found"));
+                .orElseThrow(() -> new RuntimeException("Warranty not found"));
 
         AlertLog log = new AlertLog();
         log.setWarranty(warranty);
