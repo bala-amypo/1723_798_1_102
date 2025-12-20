@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,6 +41,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
     }
 }
