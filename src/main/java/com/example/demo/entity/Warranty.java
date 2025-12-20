@@ -2,37 +2,59 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 @Entity
 public class Warranty {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    // Warranty belongs to a single user
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @Column(nullable = false)
     private LocalDate purchaseDate;
+
+    @Column(nullable = false)
     private LocalDate expiryDate;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String serialNumber;
-    
-    // Constructors
-    public Warranty() {
+
+    // ---------------- VALIDATION ----------------
+    @PrePersist
+    @PreUpdate
+    private void validateDates() {
+        if (expiryDate.isBefore(purchaseDate) || expiryDate.isEqual(purchaseDate)) {
+            throw new IllegalArgumentException(
+                "Expiry date must be after purchase date"
+            );
+        }
     }
-    
-    public Warranty(Long id, User user, Product product, LocalDate purchaseDate, 
-                   LocalDate expiryDate, String serialNumber) {
+
+    // ---------------- CONSTRUCTORS ----------------
+    public Warranty() {}
+
+    public Warranty(Long id, User user, Product product,
+                    LocalDate purchaseDate, LocalDate expiryDate,
+                    String serialNumber) {
         this.id = id;
         this.user = user;
         this.product = product;
@@ -40,101 +62,52 @@ public class Warranty {
         this.expiryDate = expiryDate;
         this.serialNumber = serialNumber;
     }
-    
-    // Builder method for tests
-    public static WarrantyBuilder builder() {
-        return new WarrantyBuilder();
-    }
-    
-    // Static builder class
-    public static class WarrantyBuilder {
-        private Long id;
-        private User user;
-        private Product product;
-        private LocalDate purchaseDate;
-        private LocalDate expiryDate;
-        private String serialNumber;
-        
-        public WarrantyBuilder id(Long id) {
-            this.id = id;
-            return this;
-        }
-        
-        public WarrantyBuilder user(User user) {
-            this.user = user;
-            return this;
-        }
-        
-        public WarrantyBuilder product(Product product) {
-            this.product = product;
-            return this;
-        }
-        
-        public WarrantyBuilder purchaseDate(LocalDate purchaseDate) {
-            this.purchaseDate = purchaseDate;
-            return this;
-        }
-        
-        public WarrantyBuilder expiryDate(LocalDate expiryDate) {
-            this.expiryDate = expiryDate;
-            return this;
-        }
-        
-        public WarrantyBuilder serialNumber(String serialNumber) {
-            this.serialNumber = serialNumber;
-            return this;
-        }
-        
-        public Warranty build() {
-            return new Warranty(id, user, product, purchaseDate, expiryDate, serialNumber);
-        }
-    }
-    
-    // Getters and Setters
+
+    // ---------------- GETTERS & SETTERS ----------------
     public Long getId() {
         return id;
     }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
+
     public User getUser() {
         return user;
     }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
+
     public Product getProduct() {
         return product;
     }
-    
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-    
+
     public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
-    
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-    
+
     public LocalDate getExpiryDate() {
         return expiryDate;
     }
-    
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-    
+
     public String getSerialNumber() {
         return serialNumber;
     }
-    
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
