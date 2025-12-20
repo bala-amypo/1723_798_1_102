@@ -27,6 +27,12 @@ public class WarrantyServiceImpl implements WarrantyService {
     @Override
     public Warranty registerWarranty(Long userId, Long productId, Warranty warranty) {
 
+        // Check if serial number is unique
+        if (warrantyRepository.existsBySerialNumber(warranty.getSerialNumber())) {
+            throw new RuntimeException("Serial number already exists");
+        }
+
+        // Fetch user and product
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -38,9 +44,11 @@ public class WarrantyServiceImpl implements WarrantyService {
             throw new RuntimeException("Expiry date must be after purchase date");
         }
 
+        // Set associations
         warranty.setUser(user);
         warranty.setProduct(product);
 
+        // Save warranty
         return warrantyRepository.save(warranty);
     }
 
