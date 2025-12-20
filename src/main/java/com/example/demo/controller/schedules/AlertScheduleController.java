@@ -1,4 +1,4 @@
-package com.example.demo.Controller.schedules;
+package com.example.demo.controller.schedules;
 
 import java.util.List;
 
