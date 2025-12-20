@@ -1,12 +1,11 @@
-package com.example.demo.repository;
+package com.example.demo.service;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.example.demo.entity.AlertLog;
 
-public interface AlertLogRepository extends JpaRepository<AlertLog, Long>{
-      
-    List<AlertLog> findByWarrantyId(Long warrantyId);
+public interface AlertLogService {
+
+    AlertLog addLog(Long warrantyId, String message);
+
+    List<AlertLog> getLogs(Long warrantyId);
 }
