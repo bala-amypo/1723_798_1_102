@@ -26,7 +26,7 @@ public class User {
     private String password;
     private String role;
     
-    // Constructors
+ 
     public User() {
         this.role = "USER";
     }
@@ -39,12 +39,12 @@ public class User {
         this.role = (role == null || role.isBlank()) ? "USER" : role;
     }
     
-    // Builder method for tests
+   
     public static UserBuilder builder() {
         return new UserBuilder();
     }
     
-    // Static builder class
+    
     public static class UserBuilder {
         private Long id;
         private String name;
@@ -82,7 +82,7 @@ public class User {
         }
     }
     
-    // Getters and Setters
+  
     public Long getId() {
         return id;
     }

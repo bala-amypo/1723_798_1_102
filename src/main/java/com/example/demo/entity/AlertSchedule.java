@@ -18,7 +18,7 @@ public class AlertSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Many alerts can belong to one warranty
+  
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "warranty_id", nullable = false)
     private Warranty warranty;
@@ -29,7 +29,7 @@ public class AlertSchedule {
     @Column(nullable = false)
     private Boolean enabled;
 
-    // ---------------- VALIDATION ----------------
+ 
     @PrePersist
     @PreUpdate
     private void validateDaysBeforeExpiry() {
@@ -40,8 +40,7 @@ public class AlertSchedule {
         }
     }
 
-    // ---------------- CONSTRUCTORS ----------------
-    // Default constructor (required by JPA)
+ 
     public AlertSchedule() {
     }
 
@@ -53,7 +52,7 @@ public class AlertSchedule {
         this.enabled = enabled;
     }
 
-    // ---------------- BUILDER (for tests) ----------------
+  
     public static AlertScheduleBuilder builder() {
         return new AlertScheduleBuilder();
     }
@@ -89,7 +88,7 @@ public class AlertSchedule {
         }
     }
 
-    // ---------------- GETTERS & SETTERS ----------------
+  
     public Long getId() {
         return id;
     }

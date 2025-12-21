@@ -20,7 +20,7 @@ public class Product {
     @Column(nullable = false)
     private String category;
     
-    // Constructors
+  
     public Product() {
     }
     
@@ -32,12 +32,12 @@ public class Product {
         this.category = category;
     }
     
-    // Builder method for tests
+   
     public static ProductBuilder builder() {
         return new ProductBuilder();
     }
     
-    // Static builder class
+   
     public static class ProductBuilder {
         private Long id;
         private String name;
@@ -75,7 +75,7 @@ public class Product {
         }
     }
     
-    // Getters and Setters
+  
     public Long getId() {
         return id;
     }

@@ -20,7 +20,7 @@ public class Warranty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Warranty belongs to a single user
+  
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -49,7 +49,7 @@ public class Warranty {
         }
     }
 
-    // ---------------- CONSTRUCTORS ----------------
+  
     public Warranty() {}
 
     public Warranty(Long id, User user, Product product,
@@ -63,7 +63,7 @@ public class Warranty {
         this.serialNumber = serialNumber;
     }
 
-    // ---------------- GETTERS & SETTERS ----------------
+    
     public Long getId() {
         return id;
     }

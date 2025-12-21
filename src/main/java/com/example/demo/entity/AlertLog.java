@@ -19,7 +19,6 @@ public class AlertLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Many logs can belong to one warranty
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "warranty_id", nullable = false)
     private Warranty warranty;
@@ -30,15 +29,13 @@ public class AlertLog {
     @Column(nullable = false)
     private String message;
 
-    // ---------------- BEFORE USED METHOD ----------------
-    // Auto-generate timestamp before saving
+  
     @PrePersist
     private void onCreate() {
         this.sentAt = LocalDateTime.now();
     }
 
-    // ---------------- CONSTRUCTORS ----------------
-    // Default constructor (required by JPA)
+ 
     public AlertLog() {
     }
 
