@@ -47,7 +47,7 @@ public class AlertLog {
         this.message = message;
     }
 
-    // ---------------- BUILDER (for tests) ----------------
+ 
     public static AlertLogBuilder builder() {
         return new AlertLogBuilder();
     }
@@ -83,7 +83,6 @@ public class AlertLog {
         }
     }
 
-    // ---------------- GETTERS & SETTERS ----------------
     public Long getId() {
         return id;
     }
