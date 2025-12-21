@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addProduct(Product product) {
-        // Validate required fields
+       
         if (product.getModelNumber() == null || product.getModelNumber().isBlank()) {
             throw new RuntimeException("Model number required");
         }
