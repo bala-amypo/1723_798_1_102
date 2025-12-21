@@ -38,7 +38,7 @@ public class Warranty {
     @Column(nullable = false, unique = true)
     private String serialNumber;
 
-    // ---------------- VALIDATION ----------------
+   
     @PrePersist
     @PreUpdate
     private void validateDates() {
