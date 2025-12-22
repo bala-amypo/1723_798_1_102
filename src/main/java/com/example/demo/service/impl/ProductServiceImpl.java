@@ -1,36 +1,36 @@
-// package com.example.demo.service;
+package com.example.demo.service;
 
-// import java.util.List;
+import java.util.List;
 
-// import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
-// import com.example.demo.entity.Product;
-// import com.example.demo.repository.ProductRepository;
+import com.example.demo.entity.Product;
+import com.example.demo.repository.ProductRepository;
 
-// @Service
-// public class ProductServiceImpl implements ProductService {
+@Service
+public class ProductServiceImpl implements ProductService {
 
-//     private final ProductRepository productRepository;
+    private final ProductRepository productRepository;
     
-//     public ProductServiceImpl(ProductRepository productRepository) {
-//         this.productRepository = productRepository;
-//     }
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
-//     @Override
-//     public Product addProduct(Product product) {
+    @Override
+    public Product addProduct(Product product) {
        
-//         if (product.getModelNumber() == null || product.getModelNumber().isBlank()) {
-//             throw new RuntimeException("Model number required");
-//         }
-//         if (product.getCategory() == null || product.getCategory().isBlank()) {
-//             throw new RuntimeException("Category required");
-//         }
+        if (product.getModelNumber() == null || product.getModelNumber().isBlank()) {
+            throw new RuntimeException("Model number required");
+        }
+        if (product.getCategory() == null || product.getCategory().isBlank()) {
+            throw new RuntimeException("Category required");
+        }
         
-//         return productRepository.save(product);
-//     }
+        return productRepository.save(product);
+    }
 
-//     @Override
-//     public List<Product> getAllProducts() {
-//         return productRepository.findAll();
-//     }
-// }
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+}

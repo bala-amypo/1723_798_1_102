@@ -1,12 +1,12 @@
-// package com.example.demo.service;
+package com.example.demo.service;
 
-// import java.util.List;
+import java.util.List;
 
-// import com.example.demo.entity.Product;
+import com.example.demo.entity.Product;
 
-// public interface ProductService {
+public interface ProductService {
 
-//     Product addProduct(Product product);
+    Product addProduct(Product product);
 
-//     List<Product> getAllProducts();
-// }
+    List<Product> getAllProducts();
+}
