@@ -1,0 +1,20 @@
+{
+    "explorer.excludeGitIgnored": false,
+    "files.exclude": {
+        "**/target": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.idea": true
+    },
+    "files.watcherExclude": {
+        "**/target/**": true,
+        "**/.git/**": true
+    },
+    "search.exclude": {
+        "**/target/**": true,
+        "**/.git/**": true
+    },
+    "explorer.compactFolders": false,
+    "files.showHiddenFiles": true
+}
