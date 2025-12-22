@@ -1,41 +1,41 @@
-package com.example.demo.service;
+// package com.example.demo.service;
 
-import java.util.List;
+// import java.util.List;
 
-import org.springframework.stereotype.Service;
+// import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.AlertLog;
-import com.example.demo.entity.Warranty;
-import com.example.demo.repository.AlertLogRepository;
-import com.example.demo.repository.WarrantyRepository;
+// import com.example.demo.entity.AlertLog;
+// import com.example.demo.entity.Warranty;
+// import com.example.demo.repository.AlertLogRepository;
+// import com.example.demo.repository.WarrantyRepository;
 
-@Service
-public class AlertLogServiceImpl implements AlertLogService {
+// @Service
+// public class AlertLogServiceImpl implements AlertLogService {
 
-    private final AlertLogRepository alertLogRepository;
-    private final WarrantyRepository warrantyRepository;
+//     private final AlertLogRepository alertLogRepository;
+//     private final WarrantyRepository warrantyRepository;
     
-    public AlertLogServiceImpl(AlertLogRepository alertLogRepository,
-                              WarrantyRepository warrantyRepository) {
-        this.alertLogRepository = alertLogRepository;
-        this.warrantyRepository = warrantyRepository;
-    }
+//     public AlertLogServiceImpl(AlertLogRepository alertLogRepository,
+//                               WarrantyRepository warrantyRepository) {
+//         this.alertLogRepository = alertLogRepository;
+//         this.warrantyRepository = warrantyRepository;
+//     }
 
-    @Override
-    public AlertLog addLog(Long warrantyId, String message) {
+//     @Override
+//     public AlertLog addLog(Long warrantyId, String message) {
 
-        Warranty warranty = warrantyRepository.findById(warrantyId)
-                .orElseThrow(() -> new RuntimeException("Warranty not found"));
+//         Warranty warranty = warrantyRepository.findById(warrantyId)
+//                 .orElseThrow(() -> new RuntimeException("Warranty not found"));
 
-        AlertLog log = new AlertLog();
-        log.setWarranty(warranty);
-        log.setMessage(message);
+//         AlertLog log = new AlertLog();
+//         log.setWarranty(warranty);
+//         log.setMessage(message);
 
-        return alertLogRepository.save(log);
-    }
+//         return alertLogRepository.save(log);
+//     }
 
-    @Override
-    public List<AlertLog> getLogs(Long warrantyId) {
-        return alertLogRepository.findByWarrantyId(warrantyId);
-    }
-}
+//     @Override
+//     public List<AlertLog> getLogs(Long warrantyId) {
+//         return alertLogRepository.findByWarrantyId(warrantyId);
+//     }
+// }
