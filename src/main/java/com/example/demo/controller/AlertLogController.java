@@ -16,25 +16,25 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class AlertLogController {
 
     private final AlertLogService alertLogService;
-    
-    public AlertLogController(AlertLogService alertLogService) {
-        this.alertLogService = alertLogService;
-    }
+        
+            public AlertLogController(AlertLogService alertLogService) {
+                    this.alertLogService = alertLogService;
+                        }
 
-    @PostMapping("/{warrantyId}")
-    @Operation(summary = "Add a log entry for a warranty")
-    public AlertLog addLog(
-            @PathVariable Long warrantyId,
-            @RequestBody String message) {
+                            @PostMapping("/{warrantyId}")
+                                @Operation(summary = "Add a log entry for a warranty")
+                                    public AlertLog addLog(
+                                                @PathVariable Long warrantyId,
+                                                            @RequestBody String message) {
 
-        return alertLogService.addLog(warrantyId, message);
-    }
+                                                                    return alertLogService.addLog(warrantyId, message);
+                                                                        }
 
-    @GetMapping("/{warrantyId}")
-    @Operation(summary = "Get all logs for a warranty")
-    public List<AlertLog> getLogs(
-            @PathVariable Long warrantyId) {
+                                                                            @GetMapping("/{warrantyId}")
+                                                                                @Operation(summary = "Get all logs for a warranty")
+                                                                                    public List<AlertLog> getLogs(
+                                                                                                @PathVariable Long warrantyId) {
 
-        return alertLogService.getLogs(warrantyId);
-    }
-}
+                                                                                                        return alertLogService.getLogs(warrantyId);
+                                                                                                            }
+                                                                                                            }
