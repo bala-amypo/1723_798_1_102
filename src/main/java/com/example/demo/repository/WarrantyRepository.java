@@ -1,22 +1,18 @@
 package com.example.demo.repository;
 
-import java.time.LocalDate;
-import java.util.List;
-
+import com.example.demo.entity.Warranty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import java.time.LocalDate;
+import java.util.List;
 
-import com.example.demo.entity.Warranty;
-
+@Repository
 public interface WarrantyRepository extends JpaRepository<Warranty, Long> {
+    List<Warranty> findByUserId(Long userId);
     boolean existsBySerialNumber(String serialNumber);
     
-    List<Warranty> findByUserId(Long userId);
-    
-    @Query("SELECT w FROM Warranty w WHERE w.expiryDate BETWEEN :startDate AND :endDate")
-    List<Warranty> findWarrantiesExpiringBetween(
-        @Param("startDate") LocalDate startDate, 
-        @Param("endDate") LocalDate endDate
-    );
+    @Query("SELECT w FROM Warranty w WHERE w.expiryDate BETWEEN :from AND :to")
+    List<Warranty> findWarrantiesExpiringBetween(@Param("from") LocalDate from, @Param("to") LocalDate to);
 }
