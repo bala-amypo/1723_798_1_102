@@ -15,6 +15,7 @@ public class SwaggerConfig {
             .info(new Info().title("Demo API").version("1.0"))
             .components(new Components()
                 .addSecuritySchemes("bearerAuth", new SecurityScheme()
+                    .name("Authorization")
                     .type(SecurityScheme.Type.HTTP)
                     .scheme("bearer")
                     .bearerFormat("JWT")))
