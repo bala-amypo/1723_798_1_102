@@ -14,7 +14,11 @@ public class JwtTokenProvider {
 
     public JwtTokenProvider(JwtProperties jwtProperties) {
         this.jwtProperties = jwtProperties;
-        this.key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
+        String secret = jwtProperties.getSecret();
+        if (secret == null || secret.length() < 32) {
+            secret = "defaultSecretKeyThatIsAtLeast32CharactersLong123456789";
+        }
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
     public String createToken(Long userId, String email, String role) {
