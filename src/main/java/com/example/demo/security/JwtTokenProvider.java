@@ -23,7 +23,11 @@ public class JwtTokenProvider {
 
     public String createToken(Long userId, String email, String role) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtProperties.getExpirationMs());
+        Long expirationMs = jwtProperties.getExpirationMs();
+        if (expirationMs == null) {
+            expirationMs = 3600000L;
+        }
+        Date expiryDate = new Date(now.getTime() + expirationMs);
 
         return Jwts.builder()
                 .setSubject(email)
