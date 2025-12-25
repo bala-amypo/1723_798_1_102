@@ -23,9 +23,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(
                         "/auth/**",
-                        "/v3/api-docs/**",
                         "/swagger-ui/**",
-                        "/swagger-ui.html"
+                        "/v3/api-docs/**",
+                        "/products/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             );
@@ -33,7 +33,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 🔥 REQUIRED BEAN
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
