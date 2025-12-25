@@ -25,8 +25,12 @@ public class SecurityConfig {
                         "/auth/**",
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
-                        "/products/**"
-                ).permitAll()
+                        "/swagger-ui.html",
+                        "/products/**",
+                        "/warranties/**",
+                        "/logs/**",
+                        "/schedules/**"
+                ).permitAll() // now these endpoints are accessible without JWT
                 .anyRequest().authenticated()
             );
 
